@@ -731,7 +731,6 @@ void HumanView::ActorEnteredBossAreaDelegate(IEventDataPtr pEventData)
     soundInfo.isMusic = true;
     soundInfo.loops = -1;
     //soundInfo.soundVolume = g_pApp->GetGameConfig()->musicVolume * 3;
-    g_pApp->GetAudio()->SetMusicVolume(g_pApp->GetGameConfig()->musicVolume);
     IEventMgr::Get()->VTriggerEvent(IEventDataPtr(new EventData_Request_Play_Sound(soundInfo)));
 }
 
@@ -746,7 +745,6 @@ void HumanView::BossFightEndedDelegate(IEventDataPtr pEventData)
         soundInfo.isMusic = true;
         soundInfo.loops = -1;
         //soundInfo.soundVolume = g_pApp->GetGameConfig()->musicVolume;
-        g_pApp->GetAudio()->SetMusicVolume(g_pApp->GetGameConfig()->musicVolume);
         IEventMgr::Get()->VTriggerEvent(IEventDataPtr(new EventData_Request_Play_Sound(soundInfo)));
     }
 

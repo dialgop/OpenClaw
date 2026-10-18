@@ -249,6 +249,13 @@ void Audio::SetMusicVolume(int volumePercentage)
     m_MusicVolume = (int)((((float)volumePercentage) / 100.0f) * (float)MIX_MAX_VOLUME);
 
 #ifdef _WIN32
+    // Music which is turned off is paused by muting it, setting its volume now would make it
+    // audible again. The new volume is applied when music is turned on (ResumeMusic).
+    if (!m_bMusicOn)
+    {
+        return;
+    }
+
     RpcTryExcept
     {
         MidiRPC_ChangeVolume(m_MusicVolume);
